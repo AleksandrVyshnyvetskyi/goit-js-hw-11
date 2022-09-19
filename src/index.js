@@ -5,6 +5,9 @@ import fetchPictures from './js/fetchPictures';
 import {refs} from './js/refs';
 import insertCreatedAnimals from './js/createListAnimals';
 import smoothScrollToBottomPage from './js/smoothScrollToButtomPage';
+import sal from 'sal.js'
+
+// ====================================================================================================================================================================
 
 Notify.init({
     fontSize: '24px',
@@ -12,10 +15,11 @@ Notify.init({
     borderRadius: '40px',
     });
 
+// ====================================================================================================================================================================
+
 let currentPage = 1;
 refs.btnLoadMoreEl.classList.add('hide');
 const lightbox = new SimpleLightbox('.gallery a', { captions: true, captionSelector: 'img', captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250 });
-
 refs.formEl.addEventListener('submit', onSubmitForm);
 refs.btnLoadMoreEl.addEventListener('click', onClickBtnLodeMore);
 
@@ -38,6 +42,7 @@ async function convertFetchResults (searchQuery, currentPage) {
         if (currentPage === 1) {
             Notify.info(`Hooray! We found ${fetchResult.totalHits} images.`);
         }
+        
         filterFetchResult(fetchResult);
     } catch (error) {console.log(error)}
 }
@@ -64,4 +69,3 @@ function filterFetchResult(fetchResult) {
 function clearGalleryList () {
     refs.galleryEl.innerHTML = "";
 }
-
